@@ -1,0 +1,47 @@
+/* Montserrat variable */
+@font-face {
+    font-family: "Montserrat";
+    src: url(./Fonts/WOFF2/Montserrat.woff2) format("woff2"),
+         url(./Fonts/TTF/Montserrat.ttf) format("truetype");
+}
+
+/* Dejavu basic */
+@font-face {
+    font-family: "Dejavu";
+    src: url(./Fonts/WOFF2/DejavuSans.woff2) format("woff2"),
+         url(./Fonts/TTF/DejavuSans.ttf) format("truetype");
+}
+
+/* Dejavu italic */
+@font-face {
+    font-family: "Dejavu";
+    src: url(./Fonts/WOFF2/DejavuSansItalic.woff2) format("woff2"),
+         url(./Fonts/TTF/DejavuSansItalic.ttf) format("truetype");
+    
+    font-style: italic;
+}
+
+/* Dejavu bold */
+@font-face {
+    font-family: "Dejavu";
+    src: url(./Fonts/WOFF2/DejavuSansBold.woff2) format("woff2"),
+         url(./Fonts/TTF/DejavuSansBold.ttf) format("truetype");
+    
+    font-weight: bold;
+}
+
+/* Dejavu bold-italic */
+@font-face {
+    font-family: "Dejavu";
+    src: url(./Fonts/WOFF2/DejavuSansBoldItalic.woff2) format("woff2"),
+         url(./Fonts/TTF/DejavuSansBoldItalic.ttf) format("truetype");
+    
+    font-style: italic;
+}
+
+/* Dejavu extra-light */
+@font-face {
+    font-family: "Montserrat";
+    src: url(./Fonts/WOFF2/DejavuSansExtraLight.woff2) format("woff2"),
+         url(./Fonts/TTF/DejavuSansExtraLight.ttf) format("truetype");
+}

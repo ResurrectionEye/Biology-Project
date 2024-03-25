@@ -1,0 +1,531 @@
+@import url(./Colors.css);
+@import url(./Fonts.css);
+
+html,
+body
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", "Dejavu";
+    background: var(--Primary);
+    color: var(--Text);
+}
+
+#App
+{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    background: transparent;
+}
+
+.Slides
+{
+    padding: 0;
+    overflow: auto;
+    /* overflow: hidden; */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Explorer */
+}
+
+.Slides::-webkit-scrollbar
+{
+    display: none;
+    /* For all other (known) */
+}
+
+.Slides::after
+{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.Slides>.Slide
+{
+    width: calc(100vw - 10rem);
+    height: calc(100vh - 10rem);
+    padding: 5rem;
+    float: left;
+    /* Use float */
+}
+
+nav
+{
+    height: 80vh;
+    width: .35rem;
+    position: fixed;
+    top: 10vh;
+    bottom: 10vh;
+    right: 2.5rem;
+    display: flex;
+    /* flex-direction: column; */
+    /* overflow-y: scroll; */
+    overflow-y: hidden;
+    white-space: unset;
+    flex-wrap: wrap;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* Explorer */
+}
+
+nav::-webkit-scrollbar
+{
+    display: none;
+}
+
+nav>.Tablet,
+nav>.FocusedOverlay
+{
+    width: 100%;
+    height: calc(80vh / 5 - (.5rem * 2));
+    background: var(--Secondary);
+    margin: .5rem 0;
+    opacity: .5;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: .33s opacity ease-in-out;
+}
+
+nav.BrokenLayout
+{
+    height: fit-content;
+    margin: auto 0;
+}
+
+nav>.Tablet:nth-child(2)
+{
+    margin-top: 0;
+}
+
+nav>.Tablet:last-child
+{
+    margin-bottom: 0;
+}
+
+/* nav > .Tablet.focus
+{
+    opacity: 1;
+} */
+
+nav>.FocusedOverlay
+{
+    opacity: 1;
+    position: absolute;
+
+    display: none;
+
+    margin: 0;
+    /* transform: translateY(12px); */
+    pointer-events: none;
+    transition: .33s transform ease-in-out;
+}
+
+body:not(.Disable) nav>.Tablet.Focus
+{
+    background: var(--Tertiary);
+    opacity: 1;
+}
+
+nav>.Tablet:hover
+{
+    background: var(--Tertiary);
+}
+
+/* Generally end, now settings part */
+.Burger
+{
+    width: 35px;
+    height: 1.15rem;
+    position: fixed;
+    bottom: 1.9021739130434782608695652173913rem;
+    left: 2.5rem;
+    display: flex;
+    z-index: 999;
+}
+
+.Burger span
+{
+    background-color: var(--Text);
+    position: absolute;
+    border-radius: 2px;
+    transition: transform 0.3s;
+    width: 100%;
+    height: 4px;
+}
+
+.Burger span:nth-child(1)
+{
+    top: 0;
+    left: 0;
+}
+
+.Burger span:nth-child(2)
+{
+    top: 13px;
+    left: 0;
+}
+
+#App:not(.Open) .Burger:hover span:nth-child(1)
+{
+    transform: scaleX(.8);
+    transition: .33s;
+}
+
+#App:not(.Open) .Burger:hover span:nth-child(2)
+{
+    transform: scaleX(.5);
+}
+
+#App.Open .Burger span:nth-child(1),
+#App.Open .Burger span:nth-child(2)
+{
+    top: 13px;
+    transition: .33s;
+}
+
+#App .Settings
+{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: var(--Primary);
+    transition: .33s opacity;
+}
+
+#App.Open .Settings
+{
+    opacity: 1;
+    z-index: 99;
+}
+
+/* Button Style */
+.DropdownButton
+{
+    position: relative;
+    max-width: fit-content;
+    /* margin-left: 10px; */
+    /* padding: .5rem; */
+    text-align: center;
+    z-index: 200;
+    user-select: none;
+}
+
+.DropdownButton > .MenuDropdown
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.DropdownButton > .MenuDropdown > button
+{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin: .25rem;
+    border-radius: 3px;
+    color: var(--Text);
+    height: 25px;
+    transition: .33s;
+    font-weight: bold;
+}
+
+.DropdownButton > .MenuDropdown > button:hover
+{
+    background: #ffeba7;
+    color: #292929;
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked)
+{
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Dropdown:checked + label,
+.Dropdown:not(:checked) + label
+{
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 2;
+    height: 35px;
+    transition: all 200ms linear;
+    border-radius: 4px;
+    width: 120px;
+    letter-spacing: 1px;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    text-align: center;
+    border: none;
+    background-color: #ffeba7;
+    cursor: pointer;
+    color: #313131;
+    box-shadow: 0 12px 35px 0 rgba(255, 235, 167, .15);
+    padding: .5rem;
+}
+
+.Dropdown:checked + label:before,
+.Dropdown:not(:checked) + label:before
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    cursor: auto;
+    pointer-events: none;
+}
+
+.Dropdown:checked + label:before
+{
+    pointer-events: auto;
+}
+
+.Dropdown:not(:checked) + label .uil
+{
+    font-size: 24px;
+    margin-left: 10px;
+    transition: transform 200ms linear;
+}
+
+.Dropdown:checked + label .uil
+{
+    transform: rotate(180deg);
+    font-size: 24px;
+    margin-left: 10px;
+    transition: transform 200ms linear;
+}
+
+.MenuDropdown
+{
+    position: absolute;
+    padding: 5px;
+    margin-left: -5px;
+    background-color: var(--Primary);
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+    box-shadow: 0 14px 35px 0 rgba(9, 9, 12, 0.4);
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: all 200ms linear;
+}
+
+.Option:not(.CommingSoon) .Dropdown:checked ~.MenuDropdown
+{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.Settings
+{
+    width: calc(100% - 5rem) !important;
+    padding: 2.5rem;
+    height: calc(100vh - 5rem) !important;
+    z-index: -1;
+}
+
+.Settings .Option
+{
+    margin: .5rem 0;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.Settings .Option:first-child
+{
+    margin-top: 0;
+}
+
+.Settings .Option:last-child
+{
+    margin-bottom: 0;
+}
+
+.Queue
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 9999;
+    background: var(--Primary);
+    transition: .33s;
+    user-select: none;
+}
+
+.Queue > .Who
+{
+    position: absolute;
+    bottom: 2.5rem;
+}
+
+.Queue.Disable
+{
+    pointer-events: none;
+    opacity: 0;
+}
+
+.Option.CommingSoon
+{
+    opacity: 1;
+}
+
+.Option.CommingSoon::before
+{
+    display: flex;
+    width: fit-content;
+    height: 1rem;
+    position: absolute;
+    opacity: .5;
+    transform: translateY(-150%);
+    content: 'Comming Soon';
+}
+
+.Option.CommingSoon > *:not(.DropdownButton)
+{
+    pointer-events: none;
+}
+
+.Option.CommingSoon .DropdownButton
+{
+    transition: .33s;
+}
+
+.Option.CommingSoon .DropdownButton:hover
+{
+    opacity: .75;    
+}
+
+/* Slides & contents */
+.Slides > .Slide
+{
+    display: flex;
+}
+
+.Slides > .Slide > *
+{
+    flex: 1;
+}
+
+.Slides > .Slide > *:first-child
+{
+    margin: auto 1.5rem auto 0;
+    text-indent: 2.5rem;
+}
+
+.Slides > .Slide > *:last-child
+{
+    margin-left: 1.5rem;
+}
+
+.Slides > .Slide > img
+{
+    border-radius: 6px;
+    width: auto;
+    height: auto;
+}
+
+.Slides > .Slide:nth-child(2n)
+{
+    flex-direction: row-reverse;
+}
+
+.Slides > .Slide:nth-child(2n) > *:first-child
+{
+    margin: auto 0 auto 1.5rem;
+    text-indent: 2.5rem;
+}
+
+.Slides > .Slide:nth-child(2n) > *:last-child
+{
+    margin-right: 1.5rem;
+}
+
+/* On #App:focus */
+.Burger, nav, .Time
+{
+    transition: .33s;
+}
+
+#App.Focus .Burger, #App.Focus nav, #App.Focus .Time
+{
+    opacity: 0;
+}
+
+/* Basic slide's transition */
+.Slides > .Slide
+{
+    margin-top: 0;
+    opacity: 1;
+    transition: .33s opacity;
+}
+
+.Slides > .Slide:not(.Focus)
+{
+    opacity: 0;
+}
+
+.Slides > .Slide.Focus img
+{
+    transition: .33s;
+}
+
+.Slides > .Slide.Focus img:hover
+{
+    opacity: .75;
+}
+
+/* Time (useless */
+.Time
+{
+    display: flex;
+    position: fixed;
+    top: 1rem;
+    left: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: .33s opacity;
+}
+
+.Time.Show
+{
+    opacity: 1;
+}

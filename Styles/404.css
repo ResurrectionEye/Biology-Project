@@ -1,0 +1,17 @@
+@import url(./Colors.css);
+@import url(./Fonts.css);
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: var(--Primary);
+    color: var(--Text);
+    font-family: "Montserrat", "Dejavu";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
