@@ -529,3 +529,17 @@ nav>.Tablet:hover
 {
     opacity: 1;
 }
+
+/* Initial edit for `li` tags */
+ul
+{
+    padding: 0;
+}
+
+li
+{
+    padding: 0;
+    text-indent: .5rem;
+    margin-left: 2.5rem;
+    margin-top: 1.5rem;
+}
